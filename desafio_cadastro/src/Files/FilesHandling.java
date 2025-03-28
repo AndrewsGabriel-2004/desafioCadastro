@@ -1,23 +1,31 @@
 package Files;
 
+import Exceptions.InvalidIOException;
+
 import java.io.*;
+import java.util.Scanner;
 
 public class FilesHandling implements Files {
     private final File directoryFolder;
     private final File archive;
+    Scanner sc = new Scanner(System.in);
+
 
     public FilesHandling() {
         directoryFolder = new File("folder");
         directoryFolder.mkdir();
         archive = new File(directoryFolder, "formulario.txt");
-        if(archive.exists()){
+        try {
+            if (archive.createNewFile()) {
+                System.out.println("Archive Created? " + archive.getAbsolutePath());
+            }
+        } catch (IOException e) {
             try {
-                archive.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new InvalidIOException("Error on Archive's creation", e);
+            } catch (InvalidIOException ex) {
+                throw new RuntimeException(ex);
             }
         }
-
     }
 
     @Override
@@ -29,11 +37,12 @@ public class FilesHandling implements Files {
                 while ((line = br.readLine()) != null) {
                     System.out.println(line);
                 }
-
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                try {
+                    throw new InvalidIOException("Error on Archive's read", e);
+                } catch (InvalidIOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         }
     }
@@ -43,17 +52,22 @@ public class FilesHandling implements Files {
         try (FileWriter fw = new FileWriter(archive);
              BufferedWriter bw = new BufferedWriter(fw)) {
             bw.write("1 - Qual o nome e sobrenome do pet? " +
-                    "\n 2 - Qual o tipo do pet (Cachorro/Gato)? " +
-                    "\n 3 - Qual o sexo do animal? " +
-                    "\n 4 - Qual endereço e bairro que ele foi encontrado? " +
-                    "\n 5 - Qual a idade aproximada do pet? " +
-                    "\n 6 - Qual o peso aproximado do pet? " +
-                    "\n 7 - Qual a raça do pet?");
+                    "\n2 - Qual o tipo do pet (Cachorro/Gato)? " +
+                    "\n3 - Qual o sexo do animal? " +
+                    "\n4 - Qual endereço e bairro que ele foi encontrado? " +
+                    "\n5 - Qual a idade aproximada do pet? " +
+                    "\n6 - Qual o peso aproximado do pet? " +
+                    "\n7 - Qual a raça do pet?");
             bw.newLine();
             bw.flush();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            try {
+                throw new InvalidIOException("Error on Archive's write", e);
+            } catch (InvalidIOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
+
 
 }
