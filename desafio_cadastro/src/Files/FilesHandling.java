@@ -1,30 +1,26 @@
 package Files;
 
 import Exceptions.InvalidIOException;
+import Menu.Pet;
 
 import java.io.*;
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class FilesHandling implements Files {
     private final File directoryFolder;
     private final File archive;
-    Scanner sc = new Scanner(System.in);
-
 
     public FilesHandling() {
         directoryFolder = new File("folder");
         directoryFolder.mkdir();
-        archive = new File(directoryFolder, "formulario.txt");
+        archive = new File(directoryFolder,"formulario.txt");
         try {
             if (archive.createNewFile()) {
                 System.out.println("Archive Created? " + archive.getAbsolutePath());
             }
         } catch (IOException e) {
-            try {
-                throw new InvalidIOException("Error on Archive's creation", e);
-            } catch (InvalidIOException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new RuntimeException(new InvalidIOException("Error on Archive's create", e));
         }
     }
 
@@ -38,11 +34,7 @@ public class FilesHandling implements Files {
                     System.out.println(line);
                 }
             } catch (IOException e) {
-                try {
-                    throw new InvalidIOException("Error on Archive's read", e);
-                } catch (InvalidIOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                throw new RuntimeException(new InvalidIOException("Error on Archive's read", e));
             }
         }
     }
@@ -61,13 +53,25 @@ public class FilesHandling implements Files {
             bw.newLine();
             bw.flush();
         } catch (IOException e) {
-            try {
-                throw new InvalidIOException("Error on Archive's write", e);
-            } catch (InvalidIOException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new RuntimeException(new InvalidIOException("Error on Archive's write", e));
         }
     }
 
+    public void saveFile(Pet pet, String nomeAnimal) {
+        File petsCadastrados = new File("PetsCadastrados");
+        petsCadastrados.mkdir();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm'-'");
 
+        String nomeArchiveRegister = LocalDateTime.now().format(dateTimeFormatter);
+        nomeArchiveRegister = nomeArchiveRegister.concat(nomeAnimal.toUpperCase().replace(" ", "")).concat(".TXT");
+
+        File archiveRegister = new File(petsCadastrados, nomeArchiveRegister);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archiveRegister, true))) {
+            bw.write(pet.toString());
+            bw.newLine();
+            bw.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(new InvalidIOException("Error on Archive's save", e));
+        }
+    }
 }

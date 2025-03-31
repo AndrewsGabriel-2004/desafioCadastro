@@ -1,7 +1,7 @@
 package Main;
 
 import Files.FilesHandling;
-import Menu.MenuApplications;
+import Cadastro.MenuApplications;
 
 import java.util.Scanner;
 
@@ -16,7 +16,6 @@ public class MainDesafioCadastro {
         filesHandling.readFile();
         System.out.println();
         menuApplications.showMenu();
-
 
         sc.close();
     }

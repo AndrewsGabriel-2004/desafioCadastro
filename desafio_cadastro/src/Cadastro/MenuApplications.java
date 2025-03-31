@@ -1,8 +1,8 @@
-package Menu;
+package Cadastro;
 
 import java.util.Scanner;
 
-public class MenuApplications {
+public class MenuApplications extends CadastroDosPets {
     Scanner sc = new Scanner(System.in);
     String indicator;
     int indicatorConfirmation;
@@ -31,7 +31,7 @@ public class MenuApplications {
 
         switch (indicatorConfirmation){
             case 1:
-
+                cadastrarNovosPets();
                 break;
             case 2:
 
