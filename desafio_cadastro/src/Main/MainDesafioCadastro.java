@@ -1,7 +1,7 @@
 package Main;
 
 import Files.FilesHandling;
-import Cadastro.MenuApplications;
+import Menu.MenuApplications;
 
 import java.util.Scanner;
 

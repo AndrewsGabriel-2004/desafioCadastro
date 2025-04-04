@@ -1,11 +1,10 @@
-package Cadastro;
+package Cadastramento;
 
 import Files.FilesHandling;
-import Menu.EnderecoAnimal;
-import Menu.Pet;
-import Menu.SexoAnimal;
-import Menu.TipoAnimal;
-
+import Pet.Pet;
+import Pet.TipoAnimal;
+import Pet.SexoAnimal;
+import Pet.EnderecoAnimal;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -82,7 +82,7 @@ O menu deve ser exibido no terminal e o usuário deve poder escolher uma opção
 3. O usuário só poderá digitar números, não podendo digitar letras ou caracteres especiais.
 
 
-## 📍Passo 3: Cadastro de novos Pets 📝
+## 📍Passo 3: Cadastramento de novos Pets 📝
 
 O usuário, ao selecionar a opção 1, deve ser capaz de cadastrar um novo pet.
 Neste momento, você deverá ler as **PERGUNTAS** do arquivo `formulario.txt` e armazenar as respostas em um objeto do tipo `Pet`.

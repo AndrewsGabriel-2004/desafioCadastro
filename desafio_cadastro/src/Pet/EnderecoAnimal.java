@@ -1,4 +1,4 @@
-package Menu;
+package Pet;
 
 public class EnderecoAnimal {
     public static final String NAO_INFORMADO = "NÃO INFORMADO";

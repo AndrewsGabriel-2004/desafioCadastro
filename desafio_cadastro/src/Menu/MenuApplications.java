@@ -1,8 +1,13 @@
-package Cadastro;
+package Menu;
+
+import Cadastramento.CadastroDosPets;
+import Cadastramento.DefinirCriterios;
 
 import java.util.Scanner;
 
-public class MenuApplications extends CadastroDosPets {
+public class MenuApplications {
+    CadastroDosPets cp = new CadastroDosPets();
+    DefinirCriterios bp = new DefinirCriterios();
     Scanner sc = new Scanner(System.in);
     String indicator;
     int indicatorConfirmation;
@@ -10,10 +15,10 @@ public class MenuApplications extends CadastroDosPets {
     public void showMenu() {
         System.out.println("Menu: ");
         System.out.println("1.Cadastrar um novo pet");
-        System.out.println("2.Alterar os dados do pet cadastrado");
-        System.out.println("3.Deletar um pet cadastrado");
-        System.out.println("4.Listar todos os pets cadastrados");
-        System.out.println("5.Listar pets por algum critério (idade, nome, raça");
+        System.out.println("2.Listar pets por algum critério (idade, nome, raça");
+        System.out.println("3.Alterar os dados do pet cadastrado");
+        System.out.println("4.Deletar um pet cadastrado");
+        System.out.println("5.Listar todos os pets cadastrados");
         System.out.println("6.Sair");
         System.out.print("Escolha uma das opções: ");
         indicator = sc.nextLine();
@@ -31,11 +36,11 @@ public class MenuApplications extends CadastroDosPets {
 
         switch (indicatorConfirmation){
             case 1:
-                cadastrarNovosPets();
-                break;
+                cp.cadastrarNovosPets();
+                showMenu();
             case 2:
-
-                break;
+                bp.definirCriterios();
+                showMenu();
             case 3:
 
                 break;

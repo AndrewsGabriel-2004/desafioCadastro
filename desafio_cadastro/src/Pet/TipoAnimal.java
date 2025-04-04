@@ -1,7 +1,5 @@
-package Menu;
+package Pet;
 
 public enum TipoAnimal {
         GATO, CACHORRO
-
-
 }
