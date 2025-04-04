@@ -7,6 +7,6 @@ public class UtilsRemoverAcento {
     public static String removerAcentos(String str) {
         String normalizado = Normalizer.normalize(str, Normalizer.Form.NFD);
         Pattern padrao = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-        return padrao.matcher(normalizado).replaceAll("").toLowerCase();
+        return padrao.matcher(normalizado).replaceAll("").toLowerCase().trim();
     }
 }

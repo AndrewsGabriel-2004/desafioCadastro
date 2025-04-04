@@ -50,7 +50,7 @@ public class DefinirCriterios {
         System.out.println("Gostaria de mais um Critério( Sim / Não)? ");
         String r = sc.nextLine();
         if(r.equalsIgnoreCase("Sim")){
-            System.out.println("Escolha um critério dentre Nome/Sexo/Endereco/Idade/Peso/Raca");
+            System.out.println("Escolha um critério dentre Nome/Sexo/Endereço/Idade/Peso/Raça");
             System.out.print("Escolha o critério a ser usado: ");
             criterio02 = sc.nextLine();
             try {

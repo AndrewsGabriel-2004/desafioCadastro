@@ -13,7 +13,7 @@ public class ArmazenarCriterios {
         this.tipoAnimal = tipoAnimal;
         this.criterio01 = criterio01;
         this.valorCriterio01 = valorCriterio01;
-        if (criterio02 != CriteriosAnimal.NULL && criterio02 != criterio01){
+        if (criterio02 != CriteriosAnimal.NULL && criterio02 != criterio01) {
             this.criterio02 = criterio02;
             this.valorCriterio02 = valorCriterio02;
         }

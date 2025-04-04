@@ -2,7 +2,14 @@ package Cadastramento;
 
 import java.io.File;
 
-public class FiltrarPets{
+public class FiltrarPets {
+    String nomeAnimal;
+    String sexoAnimal;
+    String enderecoAnimal;
+    String idadeAnimal;
+    String pesoAnimal;
+    String racaAnimal;
+
     public boolean atendeCriterios(PetArmazenarInformacoes pet, ArmazenarCriterios criterios) {
         if (pet.getTipo() != criterios.getTipoAnimal()) {
             return false;
@@ -30,7 +37,7 @@ public class FiltrarPets{
                 if (!pesoPet.equalsIgnoreCase(valorCrit1)) return false;
                 break;
             case RAÇA:
-                if (!racaPet.equalsIgnoreCase(valorCrit1)) return false;
+                if (!racaPet.contains(valorCrit1)) return false;
                 break;
             case ENDEREÇO:
                 if (!enderecoPet.toLowerCase().contains(valorCrit1.toLowerCase())) return false;
@@ -43,16 +50,16 @@ public class FiltrarPets{
                     if (!nomePet.contains(valorCrit2)) return false;
                     break;
                 case SEXO:
-                    if (!sexoPet.equals(valorCrit2)) return false;
+                    if (!sexoPet.equalsIgnoreCase(valorCrit2)) return false;
                     break;
                 case IDADE:
-                    if (!idadePet.equals(valorCrit2)) return false;
+                    if (!idadePet.equalsIgnoreCase(valorCrit2)) return false;
                     break;
                 case PESO:
-                    if (!pesoPet.equals(valorCrit2)) return false;
+                    if (!pesoPet.equalsIgnoreCase(valorCrit2)) return false;
                     break;
                 case RAÇA:
-                    if (!racaPet.equals(valorCrit2)) return false;
+                    if (!racaPet.equalsIgnoreCase(valorCrit2)) return false;
                     break;
                 case ENDEREÇO:
                     if (!enderecoPet.contains(valorCrit2)) return false;
@@ -62,10 +69,9 @@ public class FiltrarPets{
         return true;
     }
 
-    public void buscarPets(ArmazenarCriterios criterios){
+    public void buscarPets(ArmazenarCriterios criterios) {
         LerArquivosPetsCadastrados lerArquivosPetsCadastrados = new LerArquivosPetsCadastrados();
         File pasta = new File("C:\\WS-programs\\IntelliJ\\desafioCadastro\\PetsCadastrados");
-
         if (!pasta.exists() || !pasta.isDirectory()) {
             System.out.println("A pasta 'PetsCadastrados' não existe ou não é um diretório.");
             return;
@@ -80,8 +86,9 @@ public class FiltrarPets{
         for (File arquivo : arquivos) {
             PetArmazenarInformacoes pet = lerArquivosPetsCadastrados.lerConteudoDoArquivo(arquivo);
             if (pet != null && atendeCriterios(pet, criterios)) {
-                System.out.println(contador + ". " + pet.getNome() + " - " + pet.getTipo() + " - " + pet.getSexo() + " - " +
-                        pet.getEndereco() + " - " + pet.getIdade() + " anos - " + pet.getPeso() + "kg - " + pet.getRaca());
+               escreverNegritoCorrespondencia(pet,criterios);
+                System.out.println(contador + ". " + nomeAnimal + " - " + pet.getTipo() + " - " + sexoAnimal + " - " +
+                       enderecoAnimal + " - " + idadeAnimal + " anos - " + pesoAnimal + "kg - " + racaAnimal);
                 contador++;
                 encontrouPet = true;
             }
@@ -89,5 +96,61 @@ public class FiltrarPets{
         if (!encontrouPet) {
             System.out.println("Nenhum pet encontrado com os critérios informados.");
         }
+    }
+
+    public void escreverNegritoCorrespondencia(PetArmazenarInformacoes pet, ArmazenarCriterios criterios){
+        PetArmazenarInformacoes petNegrito = new PetArmazenarInformacoes(pet);
+        String valorCrit2 = (criterios.valorCriterio02 != null) ? UtilsRemoverAcento.removerAcentos(criterios.getValorCriterio02()) : "";
+        nomeAnimal = pet.getNome();
+        sexoAnimal = pet.getSexo();
+        idadeAnimal = pet.getIdade();
+        pesoAnimal = pet.getPeso();
+        racaAnimal = pet.getRaca();
+        enderecoAnimal = pet.getEndereco();
+
+        switch (criterios.getCriterio01()) {
+            case NOME:
+                nomeAnimal = petNegrito.getNomePet();
+                break;
+            case SEXO:
+                sexoAnimal = petNegrito.getSexoPet();
+                break;
+            case IDADE:
+                idadeAnimal = petNegrito.getIdadePet();
+                break;
+            case PESO:
+                pesoAnimal = petNegrito.getPesoPet();
+                break;
+            case RAÇA:
+                racaAnimal = petNegrito.getRacaPet();
+                break;
+            case ENDEREÇO:
+                enderecoAnimal = petNegrito.getEnderecoPet();
+                break;
+        }
+
+        if(!valorCrit2.isEmpty()) {
+            switch (criterios.getCriterio02()) {
+                case NOME:
+                    nomeAnimal = petNegrito.getNomePet();
+                    break;
+                case SEXO:
+                    sexoAnimal = petNegrito.getSexoPet();
+                    break;
+                case IDADE:
+                    idadeAnimal = petNegrito.getIdadePet();
+                    break;
+                case PESO:
+                    pesoAnimal = petNegrito.getPesoPet();
+                    break;
+                case RAÇA:
+                    racaAnimal = petNegrito.getRacaPet();
+                    break;
+                case ENDEREÇO:
+                    enderecoAnimal = petNegrito.getEnderecoPet();
+                    break;
+            }
+        }
+
     }
 }
