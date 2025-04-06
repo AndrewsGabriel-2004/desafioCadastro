@@ -31,7 +31,7 @@ public class Pet {
 
     private void validarNome(String nomeAnimal) {
         if (!nomeAnimal.isEmpty()) {
-            if (!nomeAnimal.matches("^[A-Za-zÀ-ÿ]+(\\s[A-Za-zÀ-ÿ]+)+$")) {
+            if (!nomeAnimal.matches("^[A-Za-zÀ-ÿ]+(\\s[A-Za-zÀ-ÿ]+)?+$")) {
                 throw new IllegalArgumentException("Nome Inválido! Informe nome e sobrenome sem caracteres especiais");
             }
         }

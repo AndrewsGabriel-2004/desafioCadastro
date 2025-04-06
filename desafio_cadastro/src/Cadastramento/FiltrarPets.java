@@ -83,14 +83,16 @@ public class FiltrarPets {
         }
         int contador = 1;
         boolean encontrouPet = false;
+        System.out.println("----------Lista Pets Encontrados----------");
         for (File arquivo : arquivos) {
             PetArmazenarInformacoes pet = lerArquivosPetsCadastrados.lerConteudoDoArquivo(arquivo);
             if (pet != null && atendeCriterios(pet, criterios)) {
-               escreverNegritoCorrespondencia(pet,criterios);
+                escreverNegritoCorrespondencia(pet,criterios);
                 System.out.println(contador + ". " + nomeAnimal + " - " + pet.getTipo() + " - " + sexoAnimal + " - " +
                        enderecoAnimal + " - " + idadeAnimal + " anos - " + pesoAnimal + "kg - " + racaAnimal);
                 contador++;
                 encontrouPet = true;
+                System.out.println("------------------------");
             }
         }
         if (!encontrouPet) {

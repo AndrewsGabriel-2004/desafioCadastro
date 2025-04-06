@@ -6,6 +6,7 @@ import Pet.Pet;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class FilesHandling implements Files {
     private final File directoryFolder;
@@ -72,6 +73,16 @@ public class FilesHandling implements Files {
             bw.flush();
         } catch (IOException e) {
             throw new RuntimeException(new InvalidIOException("Error on Archive's save", e));
+        }
+    }
+
+    public void alterarFile(File arquivoAlvo, StringBuilder subs){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(arquivoAlvo))) {
+            bw.write(subs.toString());
+            bw.newLine();
+            bw.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(new InvalidIOException("Error on Archive's write", e));
         }
     }
 }

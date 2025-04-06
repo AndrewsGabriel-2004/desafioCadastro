@@ -47,7 +47,7 @@ public class DefinirCriterios {
     }
 
     public CriteriosAnimal respostaCriterio02(){
-        System.out.println("Gostaria de mais um Critério( Sim / Não)? ");
+        System.out.print("Gostaria de mais um Critério( Sim / Não)? ");
         String r = sc.nextLine();
         if(r.equalsIgnoreCase("Sim")){
             System.out.println("Escolha um critério dentre Nome/Sexo/Endereço/Idade/Peso/Raça");
@@ -66,13 +66,13 @@ public class DefinirCriterios {
     }
 
     public String definirValorCriterio01(){
-        System.out.println("Digite o valor buscado usando como referência o critério selecionado: ");
+        System.out.print("Digite o valor buscado usando como referência o critério selecionado: ");
         String respostaCriterio1 = sc.nextLine();
         return respostaCriterio1.trim();
     }
 
     public void definirValorCriterio02(){
-        System.out.println("Digite o valor buscado usando como referência o critério selecionado: ");
+        System.out.print("Digite o valor buscado usando como referência o critério selecionado: ");
         String respostaCriterio2 = sc.nextLine();
         r2 = respostaCriterio2.trim();
     }
