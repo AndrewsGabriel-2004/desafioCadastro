@@ -9,9 +9,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AlterarCadastro {
+    Scanner sc = new Scanner(System.in);
     Scanner sc01;
     Scanner sc02;
-    CriteriosAnimal criterios;
     private String nomeFileAlterar;
     private static File arquivoAlvo;
     private FilesHandling filesHandling = new FilesHandling();
@@ -61,21 +61,20 @@ public class AlterarCadastro {
     }
 
     public void criteriosAlterar(String criterioAnimal) {
-        CriteriosAnimal criterio;
+        CriterioAnimal01 criterio;
         String chave;
         String valorAntigo;
         StringBuilder substituicao = new StringBuilder();
         try {
-            criterio = CriteriosAnimal.valueOf(criterioAnimal.toUpperCase().trim());
+            criterio = CriterioAnimal01.valueOf(criterioAnimal.toUpperCase().trim());
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Critério Inválido! Digite uma das opções acima na mesma formatação");
+            throw new IllegalArgumentException("Critério Inválido! Digite uma das opções acima");
         }
-        if (criterio == CriteriosAnimal.SEXO) {
-            throw new IllegalArgumentException("Respostas Inválida! Sexo não pode ser alterado");
+        if (criterio == CriterioAnimal01.SEXO) {
+            throw new IllegalArgumentException(("Respostas Inválida! Sexo não pode ser alterado"));
         }
         try {
             sc02 = new Scanner(arquivoAlvo);
-            Scanner sc = new Scanner(System.in);
             while (sc02.hasNextLine()) {
                 String line = sc02.nextLine();
                 String[] part = line.split(": ");
@@ -85,7 +84,7 @@ public class AlterarCadastro {
                 valorAntigo = part[1].trim();
 
                 if(chave.toLowerCase().contains(criterio.name().toLowerCase())){
-                    System.out.print("Digite o novo valor do critério "+ criterio + ": ");
+                    System.out.print("Digite o novo valor do critério "+ "\033[1m" + criterio + "\033[0m" + ": ");
                     String valorNovo = sc.nextLine();
                     line = line.replace(valorAntigo, valorNovo);
                 }

@@ -7,14 +7,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class LerArquivosPetsCadastrados {
-    public void lerArquivosPets() {
-        File file = new File("C:\\WS-programs\\IntelliJ\\desafioCadastro\\PetsCadastrados");
-        File[] arquivosDentroDoDiretorio = file.listFiles();
-        for (File arquivoIndividual : arquivosDentroDoDiretorio) {
-            lerConteudoDoArquivo(arquivoIndividual);
-        }
-    }
-
     public PetArmazenarInformacoes lerConteudoDoArquivo(File arquivoIndividual) {
         try (Scanner sc = new Scanner(arquivoIndividual)) {
             String nome = "", sexo = "", endereco = "", raca = "", idade = "", peso = "";

@@ -9,7 +9,7 @@ public class DefinirCriterios {
     String criterio01;
     String criterio02;
     String r1;
-    String r2 = "";
+    String r2 = null;
     ArmazenarCriterios armazenarCriterios;
     FiltrarPets filtrarPets = new FiltrarPets();
 
@@ -22,10 +22,10 @@ public class DefinirCriterios {
         System.out.println("Escolha um critério dentre Nome/Sexo/Endereço/Idade/Peso/Raça");
         System.out.print("Escolha o critério a ser usado: ");
         criterio01 = sc.nextLine();
-        CriteriosAnimal respostaCriterio01 = respostaCriterio01();
+        CriterioAnimal01 respostaCriterio01 = respostaCriterio01();
         r1 = definirValorCriterio01();
 
-        CriteriosAnimal respostaCriterio02 = respostaCriterio02();
+        CriterioAnimal01 respostaCriterio02 = respostaCriterio02();
         armazenarCriterios = new ArmazenarCriterios(respostaTipoAnimal, respostaCriterio01, respostaCriterio02, r1, r2);
         filtrarPets.buscarPets(armazenarCriterios);
     }
@@ -38,15 +38,15 @@ public class DefinirCriterios {
         }
     }
 
-    public CriteriosAnimal respostaCriterio01(){
+    public CriterioAnimal01 respostaCriterio01(){
         try {
-            return CriteriosAnimal.valueOf(criterio01.toUpperCase().trim());
+            return CriterioAnimal01.valueOf(criterio01.toUpperCase().trim());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Resposta Inválida! Digite um dos critérios acima");
         }
     }
 
-    public CriteriosAnimal respostaCriterio02(){
+    public CriterioAnimal01 respostaCriterio02(){
         System.out.print("Gostaria de mais um Critério( Sim / Não)? ");
         String r = sc.nextLine();
         if(r.equalsIgnoreCase("Sim")){
@@ -54,14 +54,14 @@ public class DefinirCriterios {
             System.out.print("Escolha o critério a ser usado: ");
             criterio02 = sc.nextLine();
             try {
-                CriteriosAnimal criterioSelecionado = CriteriosAnimal.valueOf(criterio02.toUpperCase().trim());
+                CriterioAnimal01 criterioSelecionado = CriterioAnimal01.valueOf(criterio02.toUpperCase().trim());
                 definirValorCriterio02();
                 return criterioSelecionado;
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException("Resposta Inválida! Digite um dos critérios acima");
             }
         } else {
-            return CriteriosAnimal.NULL;
+            return CriterioAnimal01.NULL;
         }
     }
 

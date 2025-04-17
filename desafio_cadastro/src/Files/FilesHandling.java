@@ -6,7 +6,6 @@ import Pet.Pet;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 public class FilesHandling implements Files {
     private final File directoryFolder;

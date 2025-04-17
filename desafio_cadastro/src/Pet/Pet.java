@@ -49,7 +49,7 @@ public class Pet {
             }
             double idadeAnimalConfirmation = Double.parseDouble(idadeAnimal);
             if (idadeAnimalConfirmation > 20 || idadeAnimalConfirmation < 0) {
-                throw new IllegalArgumentException("Idade inválida! Informe uma idade de até 20 anos");
+                throw new IllegalArgumentException("Idade inválida! Informe uma idade válida de até 20 anos");
             }
         }
     }
@@ -66,7 +66,7 @@ public class Pet {
             }
             double pesoAnimalConfirmation = Double.parseDouble(pesoAnimal);
             if (pesoAnimalConfirmation > 60 || pesoAnimalConfirmation < 0.5) {
-                throw new IllegalArgumentException("Peso Inválido! Informe um peso de até 60 Kg ou menor que 0,5 Kg");
+                throw new IllegalArgumentException("Peso Inválido! Informe um peso de até 60 Kg ou maior que 0,5 Kg");
             }
         }
     }
