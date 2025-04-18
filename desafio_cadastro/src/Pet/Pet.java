@@ -14,12 +14,10 @@ public class Pet {
     private String pesoAnimal;
     private String racaAnimal;
 
-    public Pet(String nomeAnimal, TipoAnimal tipoAnimal, SexoAnimal sexoAnimal, EnderecoAnimal enderecoAnimal, String idadeAnimal, String pesoAnimal, String racaAnimal) {
-        validarNome(nomeAnimal);
-        validarIdade(idadeAnimal);
-        validarPeso(pesoAnimal);
-        validarRaca(racaAnimal);
+    public Pet() {
+    }
 
+    public Pet(String nomeAnimal, TipoAnimal tipoAnimal, SexoAnimal sexoAnimal, EnderecoAnimal enderecoAnimal, String idadeAnimal, String pesoAnimal, String racaAnimal) {
         this.nomeAnimal = nomeAnimal.isEmpty() ? NAO_INFORMADO : nomeAnimal;
         this.tipoAnimal = tipoAnimal;
         this.sexoAnimal = sexoAnimal;
@@ -29,15 +27,15 @@ public class Pet {
         this.racaAnimal = racaAnimal.isEmpty() ? NAO_INFORMADO : racaAnimal;
     }
 
-    private void validarNome(String nomeAnimal) {
+    public void validarNome(String nomeAnimal) {
         if (!nomeAnimal.isEmpty()) {
             if (!nomeAnimal.matches("^[A-Za-zÀ-ÿ]+(\\s[A-Za-zÀ-ÿ]+)?+$")) {
-                throw new IllegalArgumentException("Nome Inválido! Informe nome e sobrenome sem caracteres especiais");
+                throw new IllegalArgumentException("Nome Inválido! Informe nome e sobrenome sem caracteres especiais ou números");
             }
         }
     }
 
-    private void validarIdade(String idadeAnimal) {
+    public void validarIdade(String idadeAnimal) {
         if (!idadeAnimal.isEmpty()) {
             if (Locale.getDefault() == localeBR) {
                 idadeAnimal = idadeAnimal.replace(".", ",");
@@ -54,7 +52,7 @@ public class Pet {
         }
     }
 
-    private void validarPeso(String pesoAnimal) {
+    public void validarPeso(String pesoAnimal) {
         if (!pesoAnimal.isEmpty()) {
             if (Locale.getDefault() == localeBR) {
                 pesoAnimal = pesoAnimal.replace(".", ",");
@@ -71,7 +69,7 @@ public class Pet {
         }
     }
 
-    private void validarRaca(String racaAnimal) {
+    public void validarRaca(String racaAnimal) {
         if (!racaAnimal.isEmpty()) {
             if (!racaAnimal.matches("^[A-Za-z ]+$")) {
                 throw new IllegalArgumentException("Raça inválida! Apenas letras são permitidas.");

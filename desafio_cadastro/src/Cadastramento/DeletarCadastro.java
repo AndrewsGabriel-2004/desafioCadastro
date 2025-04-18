@@ -47,7 +47,6 @@ public class DeletarCadastro {
             return;
         }
 
-
         for (File arquivo : arquivos) {
             try {
                 Scanner scannerLeitura = new Scanner(arquivo);
@@ -93,7 +92,6 @@ public class DeletarCadastro {
 
         System.out.print("Digite o número do pet que deseja deletar (ou 0 para cancelar): ");
         int escolha = sc.nextInt();
-        sc.nextLine();
 
         if (escolha == 0) {
             System.out.println("Operação cancelada.");

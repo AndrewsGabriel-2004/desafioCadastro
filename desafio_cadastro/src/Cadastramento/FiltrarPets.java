@@ -1,14 +1,16 @@
 package Cadastramento;
 
+import Files.FilesHandling;
+
 import java.io.File;
 
 public class FiltrarPets {
-    String nomeAnimal;
-    String sexoAnimal;
-    String enderecoAnimal;
-    String idadeAnimal;
-    String pesoAnimal;
-    String racaAnimal;
+    private String nomeAnimal;
+    private String sexoAnimal;
+    private String enderecoAnimal;
+    private String idadeAnimal;
+    private String pesoAnimal;
+    private String racaAnimal;
 
     public boolean atendeCriterios(PetArmazenarInformacoes pet, ArmazenarCriterios criterios) {
         if (pet.getTipo() != criterios.getTipoAnimal()) {
@@ -89,7 +91,7 @@ public class FiltrarPets {
             if (pet != null && atendeCriterios(pet, criterios)) {
                 escreverNegritoCorrespondencia(pet,criterios);
                 System.out.println(contador + ". " + nomeAnimal + " - " + pet.getTipo() + " - " + sexoAnimal + " - " +
-                       enderecoAnimal + " - " + idadeAnimal + " anos - " + pesoAnimal + "kg - " + racaAnimal);
+                       enderecoAnimal + " - " + idadeAnimal + " - " + pesoAnimal + " - " + racaAnimal);
                 contador++;
                 encontrouPet = true;
                 System.out.println("------------------------");

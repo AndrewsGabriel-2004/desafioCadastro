@@ -5,12 +5,12 @@ import Cadastramento.*;
 import java.util.Scanner;
 
 public class MenuApplications {
-    CadastroDosPets cp = new CadastroDosPets();
-    DefinirCriterios bp = new DefinirCriterios();
-    AlterarCadastro ac = new AlterarCadastro();
-    DeletarCadastro dc = new DeletarCadastro();
-    ListarPetsCadastrados lp = new ListarPetsCadastrados();
-    Scanner sc = new Scanner(System.in);
+    private final CadastroDosPets cp = new CadastroDosPets();
+    private final DefinirCriterios bp = new DefinirCriterios();
+    private final AlterarCadastro ac = new AlterarCadastro();
+    private final DeletarCadastro dc = new DeletarCadastro();
+    private final ListarPetsCadastrados lp = new ListarPetsCadastrados();
+    private final Scanner sc = new Scanner(System.in);
     char indicator;
     int indicatorConfirmation;
 
@@ -46,10 +46,9 @@ public class MenuApplications {
             case 4:
                 dc.deletarCadastro();
                 showMenu();
-                break;
             case 5:
                 lp.listarPets();
-                break;
+                showMenu();
             case 6:
                 break;
         }

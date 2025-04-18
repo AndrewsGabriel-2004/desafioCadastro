@@ -5,11 +5,8 @@ import java.util.Scanner;
 
 public class DefinirCriterios {
     Scanner sc = new Scanner(System.in);
-    String tipoAnimal;
-    String criterio01;
-    String criterio02;
-    String r1;
-    String r2 = null;
+    private String tipoAnimal;
+    private String r2 = null;
     ArmazenarCriterios armazenarCriterios;
     FiltrarPets filtrarPets = new FiltrarPets();
 
@@ -21,9 +18,9 @@ public class DefinirCriterios {
 
         System.out.println("Escolha um critério dentre Nome/Sexo/Endereço/Idade/Peso/Raça");
         System.out.print("Escolha o critério a ser usado: ");
-        criterio01 = sc.nextLine();
-        CriterioAnimal01 respostaCriterio01 = respostaCriterio01();
-        r1 = definirValorCriterio01();
+        String criterio01 = sc.nextLine();
+        CriterioAnimal01 respostaCriterio01 = respostaCriterio01(criterio01);
+        String r1 = definirValorCriterio01();
 
         CriterioAnimal01 respostaCriterio02 = respostaCriterio02();
         armazenarCriterios = new ArmazenarCriterios(respostaTipoAnimal, respostaCriterio01, respostaCriterio02, r1, r2);
@@ -38,7 +35,7 @@ public class DefinirCriterios {
         }
     }
 
-    public CriterioAnimal01 respostaCriterio01(){
+    public CriterioAnimal01 respostaCriterio01(String criterio01){
         try {
             return CriterioAnimal01.valueOf(criterio01.toUpperCase().trim());
         } catch (IllegalArgumentException e) {
@@ -52,7 +49,7 @@ public class DefinirCriterios {
         if(r.equalsIgnoreCase("Sim")){
             System.out.println("Escolha um critério dentre Nome/Sexo/Endereço/Idade/Peso/Raça");
             System.out.print("Escolha o critério a ser usado: ");
-            criterio02 = sc.nextLine();
+            String criterio02 = sc.nextLine();
             try {
                 CriterioAnimal01 criterioSelecionado = CriterioAnimal01.valueOf(criterio02.toUpperCase().trim());
                 definirValorCriterio02();

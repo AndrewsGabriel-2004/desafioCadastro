@@ -10,8 +10,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CadastroDosPets {
-    FilesHandling filesHandling = new FilesHandling();
-    Scanner sc = new Scanner(System.in);
+    private final FilesHandling filesHandling = new FilesHandling();
+    private final Scanner sc = new Scanner(System.in);
+    private Pet pet = new Pet();
 
     public void cadastrarNovosPets() {
         filesHandling.readFile();
@@ -33,6 +34,7 @@ public class CadastroDosPets {
     private String nomeAnimalCadastro() {
         System.out.print("Nome do pet (Nome e Sobrenome): ");
         String nomeAnimal = sc.nextLine();
+        pet.validarNome(nomeAnimal);
         return nomeAnimal;
     }
 
@@ -70,7 +72,7 @@ public class CadastroDosPets {
         System.out.println("Informe se a idade será dada em Meses (Exemplo: 8 meses, 1 mês).");
         System.out.print("Idade do Animal: ");
         String idadeAnimal = sc.nextLine();
-        if (idadeAnimal.matches("^(1[0-2]|[1-9])\\s(meses|MESES|mes|mês|MÊS)$")) {
+        if (idadeAnimal.matches("^(1[0-2]|[1-9])(\\s)?(meses|MESES|mes|mês|MÊS)$")) {
             String regex = "^(1[0-2]|[1-9])";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(idadeAnimal);
@@ -80,18 +82,21 @@ public class CadastroDosPets {
                 idadeAnimal = String.format("%.1f", anos);
             }
         }
+        pet.validarIdade(idadeAnimal);
         return idadeAnimal;
     }
 
     private String pesoAnimalCadastro() {
         System.out.print("Peso do Animal: ");
         String pesoAnimal = sc.nextLine();
+        pet.validarPeso(pesoAnimal);
         return pesoAnimal;
     }
 
     private String racaAnimalCadastro() {
         System.out.print("Raça do Animal: ");
         String racaAnimal = sc.nextLine();
+        pet.validarRaca(racaAnimal);
         return racaAnimal;
     }
 

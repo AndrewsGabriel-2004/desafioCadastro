@@ -8,8 +8,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class FilesHandling implements Files {
-    private final File directoryFolder;
+    public final File directoryFolder;
     private final File archive;
+    public File petsCadastrados;
 
     public FilesHandling() {
         directoryFolder = new File("folder");
@@ -58,7 +59,7 @@ public class FilesHandling implements Files {
     }
 
     public void saveFile(Pet pet, String nomeAnimal) {
-        File petsCadastrados = new File("PetsCadastrados");
+        petsCadastrados = new File("PetsCadastrados");
         petsCadastrados.mkdir();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm'-'");
 
